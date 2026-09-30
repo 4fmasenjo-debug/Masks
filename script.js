@@ -10,7 +10,7 @@ Promise.all([
   .catch((err) => {
     console.error("Error cargando modelos:", err);
   });
-
+}
 // ============================================================
 // IMÁGENES DE LAS MÁSCARAS SEGÚN LA EMOCIÓN
 // ============================================================
