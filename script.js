@@ -1,30 +1,14 @@
-const video = document.getElementById("video");
-
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-  faceapi.nets.ageGenderNet.loadFromUri("/models"),
-]).then(webCam);
-
-function webCam() {
-  navigator.mediaDevices
-    .getUserMedia({
-      video: true,
-      audio: false,
-    })
-    .then((stream) => {
-      video.srcObject = stream;
-      console.log("Webcam stream cargado correctamente.");
-      video.onloadedmetadata = () => {
-        video.play();
-        console.log("Video de webcam reproduciéndose.");
-      };
-    })
-    .catch((error) => {
-      console.error("Error al acceder a la webcam:", error);
-    });
+    faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
+    faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
+    faceapi.nets.ageGenderNet.loadFromUri("./models")
+])
+.then(() => {
+    console.log("Modelos cargados correctamente");
+})
+.catch(err => {
+    console.error("Error cargando modelos:", err);
+});
 }
 
 // IMAGENES DE LAS MÁSCARAS
