@@ -1,32 +1,41 @@
 const video = document.getElementById("video");
 
+console.log("Script cargado");
+console.log("Face API:", faceapi);
+
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("./models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("./models"),
-  faceapi.nets.ageGenderNet.loadFromUri("./models"),
-]).then(webCam);;
+    faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
+    faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
+    faceapi.nets.faceExpressionNet.loadFromUri("./models"),
+    faceapi.nets.ageGenderNet.loadFromUri("./models")
+])
+.then(() => {
+    console.log("TODOS LOS MODELOS CARGADOS CORRECTAMENTE");
+    webCam();
+})
+.catch((error) => {
+    console.error("ERROR CARGANDO LOS MODELOS:", error);
+});
 
 function webCam() {
-  navigator.mediaDevices
-    .getUserMedia({
-      video: true,
-      audio: false,
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false
     })
     .then((stream) => {
-      video.srcObject = stream;
-      console.log("Webcam stream cargado correctamente.");
-      video.onloadedmetadata = () => {
-        video.play();
-        console.log("Video de webcam reproduciéndose.");
-      };
+        video.srcObject = stream;
+
+        console.log("Webcam stream cargado correctamente.");
+
+        video.onloadedmetadata = () => {
+            video.play();
+            console.log("Video reproduciéndose.");
+        };
     })
     .catch((error) => {
-      console.error("Error al acceder a la webcam:", error);
+        console.error("ERROR DE WEBCAM:", error);
     });
 }
-
 // IMAGENES DE LAS MÁSCARAS
 const emotionImageMap = {
   happy: './emociones máscaras/alegría.png',
