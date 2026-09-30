@@ -1,1 +1,1 @@
-alert("SCRIPT.JS SE HA CARGADO");
+alert("HOLA");
