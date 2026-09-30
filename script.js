@@ -1,13 +1,13 @@
 Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
-    faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
-    faceapi.nets.ageGenderNet.loadFromUri("./models")
+  faceapi.nets.tinyFaceDetector.loadFromUri("./models"),
+  faceapi.nets.faceLandmark68Net.loadFromUri("./models"),
+  faceapi.nets.ageGenderNet.loadFromUri("./models")
 ])
 .then(() => {
-    console.log("Modelos cargados correctamente");
+  console.log("Modelos cargados correctamente");
 })
 .catch(err => {
-    console.error("Error cargando modelos:", err);
+  console.error("Error cargando modelos:", err);
 });
 }
 
